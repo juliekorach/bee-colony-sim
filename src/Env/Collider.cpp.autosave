@@ -1,0 +1,39 @@
+/*
+ * POOSV EPFL 2022
+ * @authors:
+ * Marco Antognini
+ */
+
+
+#include <Env/Collider.hpp>
+#include <cmath> // abs and fmod
+#include <algorithm>
+
+ 
+
+double clampx()
+{
+    center[0] = (center[0]  % width);
+    if ( < 0)
+    {
+        x = x + width;
+    }
+    
+    return x;
+}
+
+double clampy()
+{
+    y = (y % height);
+    if ( y < 0)
+    {
+        y = y + height;
+    }
+    
+    return y;
+}
+
+double getRadius()
+{
+    return radius;
+}
