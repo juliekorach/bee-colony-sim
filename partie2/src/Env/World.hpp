@@ -7,6 +7,14 @@
 
 enum class Kind : short {Herbe,Eau,Roche};
 
+
+struct Seed
+{
+    sf::Vector2i coordinates;
+    Kind type;
+};
+
+
 class World
 
 {
@@ -20,16 +28,25 @@ public:
 
     void updateCache();
 
-    void reset(bool regenarate);
-
     double getSize() const;
+
+    void reset(bool regenerate);
 
     void loadFromFile();
 
+    void step();
 
+    void clamp_seed(Seed &seed);
+
+    void move(Seed &seed);
+
+    void steps(int nb, bool regenerate=0);
+
+    void setCellType(int x, int y, Kind kind);
+
+    void smooth();
 
 private:
-
 
     std::vector<Kind> cells_;
 
@@ -45,6 +62,12 @@ private:
 
     sf::RenderTexture renderingCache_;
 
-    void reset();
+    std::vector<Seed> seeds_;
+
+    int nbWaterSeeds_;
+
+    int nbGrassSeeds_;
+
+    int index(int i, int y);
 };
 
